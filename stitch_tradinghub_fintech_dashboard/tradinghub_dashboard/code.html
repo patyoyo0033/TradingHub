@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TradingHub - Main Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#0b1326",
+                        "surface-container": "#171f33",
+                        "on-surface": "#dae2fd",
+                        "inverse-on-surface": "#283044",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "surface-dim": "#0b1326",
+                        "surface-tint": "#c3c0ff",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#c3c0ff",
+                        "secondary-fixed-dim": "#4edea3",
+                        "primary-fixed": "#e2dfff",
+                        "primary-container": "#4f46e5",
+                        "on-secondary-container": "#00311f",
+                        "tertiary-container": "#bf0f3c",
+                        "on-error": "#690005",
+                        "on-primary-container": "#dad7ff",
+                        "on-tertiary-container": "#ffd0d2",
+                        "surface-variant": "#2d3449",
+                        "error-container": "#93000a",
+                        "on-background": "#dae2fd",
+                        "on-secondary-fixed": "#002113",
+                        "on-tertiary-fixed-variant": "#92002a",
+                        "surface-container-lowest": "#060e20",
+                        "on-primary": "#1d00a5",
+                        "inverse-primary": "#4d44e3",
+                        "outline-variant": "#464555",
+                        "surface-container-highest": "#2d3449",
+                        "surface-bright": "#31394d",
+                        "secondary-container": "#00a572",
+                        "on-tertiary-fixed": "#40000d",
+                        "surface-container-high": "#222a3d",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container-low": "#131b2e",
+                        "on-tertiary": "#67001b",
+                        "on-primary-fixed": "#0f0069",
+                        "secondary": "#4edea3",
+                        "background": "#0b1326",
+                        "outline": "#918fa1",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "tertiary-fixed-dim": "#ffb2b7",
+                        "on-surface-variant": "#c7c4d8",
+                        "on-secondary-fixed-variant": "#005236",
+                        "tertiary-fixed": "#ffdadb",
+                        "on-secondary": "#003824",
+                        "tertiary": "#ffb2b7",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen antialiased selection:bg-primary-container selection:text-white flex flex-col md:flex-row">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-[#161f31] flex-col py-8 z-40 shadow-[0_12px_32px_rgba(11,19,38,0.4)]">
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-container to-primary flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'wght' 700;">monitoring</span>
+</div>
+<div>
+<h1 class="font-bold text-lg text-white tracking-tight">Pro Terminal</h1>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Elite Account</p>
+</div>
+</div>
+<div class="flex flex-col flex-1 gap-2 px-2">
+<!-- Active Tab -->
+<a class="bg-gradient-to-r from-[#4f46e5]/20 to-transparent text-[#c3c0ff] border-l-4 border-[#4f46e5] px-4 py-3 flex items-center gap-3 rounded-r-lg group relative overflow-hidden transition-all duration-300" href="#">
+<div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined fill-icon text-primary text-xl relative z-10">dashboard</span>
+<span class="font-medium text-sm relative z-10">Overview</span>
+</a>
+<a class="text-[#c7c4d8] hover:bg-[#1c263d] px-4 py-3 flex items-center gap-3 rounded-lg border-l-4 border-transparent transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">monitoring</span>
+<span class="font-medium text-sm">Live Terminal</span>
+</a>
+<a class="text-[#c7c4d8] hover:bg-[#1c263d] px-4 py-3 flex items-center gap-3 rounded-lg border-l-4 border-transparent transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">psychology</span>
+<span class="font-medium text-sm">Strategy Lab</span>
+</a>
+<a class="text-[#c7c4d8] hover:bg-[#1c263d] px-4 py-3 flex items-center gap-3 rounded-lg border-l-4 border-transparent transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">inventory_2</span>
+<span class="font-medium text-sm">Archives</span>
+</a>
+</div>
+<div class="px-6 mt-auto">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-white py-3 rounded-xl font-medium text-sm shadow-[0_8px_16px_-4px_rgba(79,70,229,0.4)] hover:shadow-[0_12px_24px_-4px_rgba(79,70,229,0.6)] active:scale-95 transition-all duration-300 relative overflow-hidden group">
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+<span class="relative z-10 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> Quick Trade
+                </span>
+</button>
+</div>
+<div class="mt-6 flex flex-col gap-1 px-2 border-t border-white/5 pt-4">
+<a class="text-[#c7c4d8] hover:bg-[#1c263d] px-4 py-2 flex items-center gap-3 rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">help</span>
+<span class="text-sm">Help</span>
+</a>
+<a class="text-[#c7c4d8] hover:bg-[#1c263d] px-4 py-2 flex items-center gap-3 rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">logout</span>
+<span class="text-sm">Logout</span>
+</a>
+</div>
+</nav>
+<!-- TopAppBar (Mobile & Sticky Header) -->
+<header class="md:hidden flex justify-between items-center w-full px-6 py-3 bg-[#0b1326]/80 backdrop-blur-xl docked full-width top-0 z-50 shadow-[0_12px_32px_rgba(11,19,38,0.4)] sticky">
+<div class="text-xl font-black tracking-tighter text-[#dae2fd] font-headline">TradingHub</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center space-x-6 mr-4">
+<a class="text-[#c3c0ff] border-b-2 border-[#4f46e5] font-bold pb-1 text-sm" href="#">Dashboard</a>
+<a class="text-[#c7c4d8] hover:text-[#dae2fd] transition-colors pb-1 text-sm font-medium" href="#">Journal</a>
+<a class="text-[#c7c4d8] hover:text-[#dae2fd] transition-colors pb-1 text-sm font-medium" href="#">Knowledge</a>
+<a class="text-[#c7c4d8] hover:text-[#dae2fd] transition-colors pb-1 text-sm font-medium" href="#">Assets</a>
+</div>
+<button class="text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/30 overflow-hidden ml-2 cursor-pointer relative group">
+<img alt="Trader Profile" class="w-full h-full object-cover" data-alt="professional headshot of a young male trader with short hair wearing a dark blazer against a subtle grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgK8yQrPHPKrKCcWrUdg2VUUSG5NR5IHJOxUYm4AAuL1SWblM3X_aXfhLRiKRxcjuhUB00lUGDHUGWCw4gPgeGw3LE6o1FNI6jprZAaxzHkACV7xHlxG6kiUA1x58sgMJ82WZGeJVJ-P1JvUpmB8KNE6FDtK41JVqZjZbD58fHNIU69w7KE8rCVTIft1ns2gvWQSrKuebSnUQzbFS6PDCI-Z-EYWAKFo3nczfolmOw6fnIpgpiHYCQ8CDhvq1EzUG5-SkHB5Kadf5E"/>
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 p-4 md:p-8 lg:p-10 pb-24 md:pb-10 relative bg-surface-container-lowest min-h-screen">
+<!-- Desktop Header Area (Matches TopAppBar JSON structure but adapted for main canvas) -->
+<div class="hidden md:flex justify-between items-end mb-10 w-full">
+<div>
+<h2 class="text-3xl font-headline font-bold text-white tracking-tight mb-1">Market Overview</h2>
+<p class="text-on-surface-variant text-sm font-medium">Welcome back. Market volatility is currently <span class="text-secondary font-semibold">Moderate</span>.</p>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-low px-4 py-2 rounded-xl border border-white/5 shadow-sm">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30 relative group cursor-pointer">
+<img alt="Trader Profile" class="w-full h-full object-cover" data-alt="professional headshot of a young male trader with short hair wearing a dark blazer against a subtle grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO917XnE3iXGZsBBJzkHUd2ogLqhG0LysLnmR2p2Q_TKuGkfXDixraLsrEoTB7kDYLqZq94OUc-04lgWb3z5Dw5Fk-HGT6qq0YM9v3CcgpUULUZWeGJBxBcUO52YminvaZvT22JGQlrYoMC6OHfXrn8u5-WFtN8YaP4DDXhnuwpvc3zTFLkfDrUwsdb2PKs9SI9DlaBaArzFjAeA02DeaBUeVt4GxJfGCNDVZz68zzSllgQroSoTSJtXcdvyyRbA6k_z9yAHuYw285"/>
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-lg bg-surface hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">notifications</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-surface hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">settings</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Stat Cards (Bento Grid) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10">
+<!-- Total PNL -->
+<div class="bg-surface-container-low rounded-xl p-5 relative overflow-hidden border border-white/5 group hover:bg-surface-container transition-colors duration-300 shadow-[0_8px_24px_rgba(11,19,38,0.2)]">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<!-- Glass/Glow Effect -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-secondary/10 rounded-full blur-3xl group-hover:bg-secondary/20 transition-all duration-500"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="text-on-surface-variant text-xs uppercase tracking-wider font-semibold">Total PNL</span>
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-sm">account_balance_wallet</span>
+</div>
+</div>
+<div class="relative z-10">
+<h3 class="text-2xl lg:text-3xl font-headline font-bold text-secondary mb-1">+$12,450.00</h3>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-secondary text-xs">trending_up</span>
+<span class="text-secondary text-xs font-medium">+4.2%</span>
+<span class="text-on-surface-variant text-[10px] ml-1">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Win Rate -->
+<div class="bg-surface-container-low rounded-xl p-5 relative overflow-hidden border border-white/5 group hover:bg-surface-container transition-colors duration-300 shadow-[0_8px_24px_rgba(11,19,38,0.2)]">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="text-on-surface-variant text-xs uppercase tracking-wider font-semibold">Win Rate</span>
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">pie_chart</span>
+</div>
+</div>
+<div class="relative z-10">
+<h3 class="text-2xl lg:text-3xl font-headline font-bold text-white mb-1">68%</h3>
+<!-- Mini progress bar -->
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full mt-4 overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container rounded-full" style="width: 68%;"></div>
+</div>
+</div>
+</div>
+<!-- Total Trades -->
+<div class="bg-surface-container-low rounded-xl p-5 relative overflow-hidden border border-white/5 group hover:bg-surface-container transition-colors duration-300 shadow-[0_8px_24px_rgba(11,19,38,0.2)]">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-all duration-500"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="text-on-surface-variant text-xs uppercase tracking-wider font-semibold">Total Trades</span>
+<div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-sm">swap_vert</span>
+</div>
+</div>
+<div class="relative z-10 flex items-end justify-between">
+<div>
+<h3 class="text-2xl lg:text-3xl font-headline font-bold text-white mb-1">142</h3>
+<span class="text-on-surface-variant text-xs">This Quarter</span>
+</div>
+<!-- Minimal Sparkline substitute -->
+<div class="flex items-end gap-1 h-8 opacity-60">
+<div class="w-1.5 bg-on-surface-variant rounded-t-sm h-[40%]"></div>
+<div class="w-1.5 bg-on-surface-variant rounded-t-sm h-[60%]"></div>
+<div class="w-1.5 bg-on-surface-variant rounded-t-sm h-[30%]"></div>
+<div class="w-1.5 bg-primary rounded-t-sm h-[80%]"></div>
+<div class="w-1.5 bg-primary rounded-t-sm h-[100%]"></div>
+</div>
+</div>
+</div>
+<!-- Best Pair -->
+<div class="bg-surface-container-low rounded-xl p-5 relative overflow-hidden border border-white/5 group hover:bg-surface-container transition-colors duration-300 shadow-[0_8px_24px_rgba(11,19,38,0.2)]">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-secondary/5 rounded-full blur-3xl group-hover:bg-secondary/10 transition-all duration-500"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="text-on-surface-variant text-xs uppercase tracking-wider font-semibold">Best Pair</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface text-sm">currency_exchange</span>
+</div>
+</div>
+<div class="relative z-10">
+<h3 class="text-2xl lg:text-3xl font-headline font-bold text-white mb-1">EUR/USD</h3>
+<div class="inline-flex mt-2 px-2 py-0.5 bg-secondary/10 rounded-full text-secondary text-xs font-medium items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 42 Wins
+                    </div>
+</div>
+</div>
+</div>
+<!-- Recent Trades Table Section -->
+<div class="bg-surface-container-low rounded-xl border border-white/5 shadow-[0_12px_40px_rgba(11,19,38,0.3)] overflow-hidden relative">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<div class="p-6 border-b border-outline-variant/15 flex justify-between items-center">
+<h3 class="text-lg font-bold text-white">Recent Executions</h3>
+<button class="text-sm text-primary hover:text-white transition-colors font-medium flex items-center gap-1">
+                    View All <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr>
+<th class="px-6 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider font-body bg-surface-container-lowest/50">Pair</th>
+<th class="px-6 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider font-body bg-surface-container-lowest/50">Date &amp; Time</th>
+<th class="px-6 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider font-body bg-surface-container-lowest/50">Type</th>
+<th class="px-6 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider font-body bg-surface-container-lowest/50">Strategy</th>
+<th class="px-6 py-4 text-xs font-semibold text-on-surface-variant uppercase tracking-wider font-body bg-surface-container-lowest/50 text-right">Net PNL</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-sm font-medium">
+<!-- Row 1 -->
+<tr class="group hover:bg-surface-container/80 transition-colors duration-200">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20 shadow-sm">
+<span class="text-white font-bold text-xs tracking-tighter">GBPJPY</span>
+</div>
+<span class="text-white font-semibold">GBP/JPY</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-on-surface">Oct 24, 2023</span>
+<span class="text-on-surface-variant text-xs">14:32:05 GMT</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="text-secondary bg-secondary/10 px-2 py-1 rounded text-xs font-bold uppercase">Long</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center bg-primary-container text-on-primary-container rounded-full px-3 py-1 text-xs font-medium shadow-sm">
+                                    SMC
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-headline font-bold text-secondary">
+                                +$845.20
+                            </td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-surface-container/80 transition-colors duration-200">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20 shadow-sm">
+<span class="text-white font-bold text-xs tracking-tighter">EURUSD</span>
+</div>
+<span class="text-white font-semibold">EUR/USD</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-on-surface">Oct 24, 2023</span>
+<span class="text-on-surface-variant text-xs">10:15:22 GMT</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="text-tertiary bg-tertiary/10 px-2 py-1 rounded text-xs font-bold uppercase">Short</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center bg-primary-container text-on-primary-container rounded-full px-3 py-1 text-xs font-medium shadow-sm">
+                                    Trend Following
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-headline font-bold text-secondary">
+                                +$1,204.50
+                            </td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-surface-container/80 transition-colors duration-200">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20 shadow-sm">
+<span class="text-white font-bold text-xs tracking-tighter">XAUUSD</span>
+</div>
+<span class="text-white font-semibold">XAU/USD</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-on-surface">Oct 23, 2023</span>
+<span class="text-on-surface-variant text-xs">08:45:10 GMT</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="text-secondary bg-secondary/10 px-2 py-1 rounded text-xs font-bold uppercase">Long</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center bg-surface-container-highest text-on-surface rounded-full px-3 py-1 text-xs font-medium border border-outline-variant/30 shadow-sm">
+                                    Scalp
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-headline font-bold text-tertiary">
+                                -$320.00
+                            </td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-surface-container/80 transition-colors duration-200">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20 shadow-sm">
+<span class="text-white font-bold text-xs tracking-tighter">US30</span>
+</div>
+<span class="text-white font-semibold">US30 IDX</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-on-surface">Oct 22, 2023</span>
+<span class="text-on-surface-variant text-xs">15:30:00 GMT</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="text-tertiary bg-tertiary/10 px-2 py-1 rounded text-xs font-bold uppercase">Short</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center bg-primary-container text-on-primary-container rounded-full px-3 py-1 text-xs font-medium shadow-sm">
+                                    SMC
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-headline font-bold text-secondary">
+                                +$2,150.75
+                            </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full rounded-t-xl z-50 bg-[#161f31]/90 backdrop-blur-2xl shadow-[0_-8px_24px_rgba(0,0,0,0.5)] border-t border-[#dae2fd]/10 fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3">
+<!-- Active Nav Item (Home maps to Dashboard intent) -->
+<a class="flex flex-col items-center justify-center bg-[#4f46e5] text-white rounded-xl p-2 scale-110 font-['Inter'] text-[10px] uppercase tracking-widest active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1 text-[20px]">grid_view</span>
+<span class="font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#c7c4d8] p-2 hover:text-[#dae2fd] font-['Inter'] text-[10px] uppercase tracking-widest active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1 text-[20px]">add_box</span>
+<span class="font-medium">Log</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#c7c4d8] p-2 hover:text-[#dae2fd] font-['Inter'] text-[10px] uppercase tracking-widest active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1 text-[20px]">auto_awesome_motion</span>
+<span class="font-medium">Grid</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#c7c4d8] p-2 hover:text-[#dae2fd] font-['Inter'] text-[10px] uppercase tracking-widest active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1 text-[20px]">account_balance_wallet</span>
+<span class="font-medium">Vault</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TradingHub - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#3323cc",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "surface": "#0b1326",
+                        "primary-container": "#4f46e5",
+                        "surface-tint": "#c3c0ff",
+                        "surface-container-highest": "#2d3449",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#2d3449",
+                        "tertiary": "#ffb2b7",
+                        "surface-container-low": "#131b2e",
+                        "on-primary-fixed": "#0f0069",
+                        "inverse-on-surface": "#283044",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#dae2fd",
+                        "surface-container": "#171f33",
+                        "surface-bright": "#31394d",
+                        "on-tertiary-fixed-variant": "#92002a",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#464555",
+                        "outline": "#918fa1",
+                        "on-primary-container": "#dad7ff",
+                        "background": "#0b1326",
+                        "surface-container-high": "#222a3d",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-secondary-container": "#00311f",
+                        "secondary-container": "#00a572",
+                        "on-secondary-fixed": "#002113",
+                        "on-background": "#dae2fd",
+                        "tertiary-container": "#bf0f3c",
+                        "on-tertiary-fixed": "#40000d",
+                        "on-tertiary-container": "#ffd0d2",
+                        "on-error": "#690005",
+                        "on-tertiary": "#67001b",
+                        "surface-container-lowest": "#060e20",
+                        "on-surface": "#dae2fd",
+                        "primary": "#c3c0ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "tertiary-fixed": "#ffdadb",
+                        "secondary-fixed-dim": "#4edea3",
+                        "inverse-primary": "#4d44e3",
+                        "on-primary": "#1d00a5",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed": "#e2dfff",
+                        "on-secondary": "#003824",
+                        "on-surface-variant": "#c7c4d8",
+                        "secondary": "#4edea3",
+                        "tertiary-fixed-dim": "#ffb2b7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b1326; /* surface */
+            background-image: 
+                linear-gradient(to right, rgba(70, 69, 85, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(70, 69, 85, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .ambient-shadow {
+            box-shadow: 0 12px 32px rgba(11, 19, 38, 0.4);
+        }
+
+        .glass-edge {
+            box-shadow: inset 0 0.5px 0 rgba(218, 226, 253, 0.1); /* on-surface 10% */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 text-on-surface bg-surface-container-lowest">
+<!-- Main Container -->
+<main class="w-full max-w-md relative z-10">
+<!-- Logo Area Above Card -->
+<div class="text-center mb-8">
+<h1 class="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary-container inline-block">
+                TradingHub
+            </h1>
+</div>
+<!-- Glassmorphic Login Card -->
+<div class="bg-surface-container-highest/60 backdrop-blur-2xl rounded-xl p-8 ambient-shadow border border-outline-variant/15 glass-edge">
+<div class="mb-8">
+<h2 class="text-xl font-semibold text-on-surface mb-2 font-headline">Welcome Back, Trader</h2>
+<p class="text-sm text-on-surface-variant font-body">Access your precision terminal.</p>
+</div>
+<form class="space-y-6">
+<!-- Email Field -->
+<div class="space-y-2 relative group">
+<label class="block text-xs font-medium text-on-surface-variant transition-colors group-focus-within:text-primary font-label" for="email">
+                        Email Address
+                    </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors pointer-events-none" style="font-size: 18px;">mail</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 text-on-surface text-sm rounded-lg block pl-10 p-3 focus:ring-2 focus:ring-primary-container/50 focus:border-primary-container/50 transition-all font-body placeholder-outline/50 outline-none" id="email" name="email" placeholder="trader@example.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2 relative group">
+<div class="flex justify-between items-center">
+<label class="block text-xs font-medium text-on-surface-variant transition-colors group-focus-within:text-primary font-label" for="password">
+                            Password
+                        </label>
+<a class="text-xs text-primary hover:text-primary-fixed-dim transition-colors font-label font-medium" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors pointer-events-none" style="font-size: 18px;">lock</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 text-on-surface text-sm rounded-lg block pl-10 p-3 focus:ring-2 focus:ring-primary-container/50 focus:border-primary-container/50 transition-all font-body placeholder-outline/50 outline-none" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed rounded-lg px-5 py-3 text-sm font-semibold hover:from-primary-fixed hover:to-primary transition-all duration-200 active:scale-[0.98] font-body flex justify-center items-center gap-2 mt-8 shadow-[0_4px_14px_rgba(79,70,229,0.3)]" type="submit">
+                    Login to Terminal
+                    <span class="material-symbols-outlined text-sm" style="font-size: 16px;">arrow_forward</span>
+</button>
+</form>
+<div class="mt-8 pt-6 border-t border-outline-variant/15 text-center">
+<p class="text-sm text-on-surface-variant font-body">
+                    Don't have an account? 
+                    <a class="text-primary font-medium hover:text-primary-fixed-dim transition-colors ml-1" href="#">Sign up</a>
+</p>
+</div>
+</div>
+<!-- Minimal Footer Info (Not global nav) -->
+<div class="mt-8 text-center text-xs text-on-surface-variant/50 font-label tracking-wide uppercase">
+            © 2024 TradingHub Terminal. Secure Connection.
+        </div>
+</main>
+</body></html>

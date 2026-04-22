@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Price Alerts &amp; Strategic Notes - Obsidian</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#2d3449",
+                      "surface-bright": "#31394d",
+                      "outline-variant": "#464555",
+                      "inverse-primary": "#4d44e3",
+                      "surface-container-lowest": "#060e20",
+                      "on-tertiary-fixed-variant": "#92002a",
+                      "on-primary": "#1d00a5",
+                      "on-secondary-fixed": "#002113",
+                      "on-background": "#dae2fd",
+                      "surface-variant": "#2d3449",
+                      "error-container": "#93000a",
+                      "surface-container-low": "#131b2e",
+                      "inverse-surface": "#dae2fd",
+                      "surface-container-high": "#222a3d",
+                      "on-tertiary-fixed": "#40000d",
+                      "secondary-container": "#00a572",
+                      "on-surface-variant": "#c7c4d8",
+                      "on-secondary-fixed-variant": "#005236",
+                      "tertiary-fixed-dim": "#ffb2b7",
+                      "secondary-fixed": "#6ffbbe",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "outline": "#918fa1",
+                      "secondary": "#4edea3",
+                      "background": "#0b1326",
+                      "on-tertiary": "#67001b",
+                      "on-primary-fixed": "#0f0069",
+                      "error": "#ffb4ab",
+                      "tertiary": "#ffb2b7",
+                      "on-secondary": "#003824",
+                      "tertiary-fixed": "#ffdadb",
+                      "surface-container": "#171f33",
+                      "surface": "#0b1326",
+                      "on-error-container": "#ffdad6",
+                      "surface-tint": "#c3c0ff",
+                      "surface-dim": "#0b1326",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "on-surface": "#dae2fd",
+                      "inverse-on-surface": "#283044",
+                      "tertiary-container": "#bf0f3c",
+                      "primary-container": "#4f46e5",
+                      "on-secondary-container": "#00311f",
+                      "primary-fixed": "#e2dfff",
+                      "secondary-fixed-dim": "#4edea3",
+                      "primary": "#c3c0ff",
+                      "on-tertiary-container": "#ffd0d2",
+                      "on-primary-container": "#dad7ff",
+                      "on-error": "#690005"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {},
+              "fontFamily": {
+                      "headline": [
+                              "Inter"
+                      ],
+                      "body": [
+                              "Inter"
+                      ],
+                      "label": [
+                              "Inter"
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
+        .glass-panel {
+            background-color: rgba(45, 52, 73, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-top: 0.5px solid rgba(218, 226, 253, 0.1);
+            box-shadow: 0 12px 32px rgba(11, 19, 38, 0.4);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #c3c0ff 0%, #4f46e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #c3c0ff 0%, #4f46e5 100%);
+        }
+        .ambient-shadow {
+            box-shadow: 0 12px 32px rgba(11, 19, 38, 0.4);
+        }
+        .ghost-border {
+            border: 1px solid rgba(70, 69, 85, 0.15);
+        }
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(70, 69, 85, 0.3); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(70, 69, 85, 0.5); }
+      </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-slate-950/80 dark:bg-[#0b1326]/80 backdrop-blur-xl fixed top-0 right-0 w-[calc(100%-16rem)] z-50 border-b border-white/5 flat no shadows flex justify-between items-center h-16 px-8 hidden md:flex">
+<div class="flex items-center gap-4">
+<h1 class="text-lg font-bold text-indigo-400 dark:text-[#c3c0ff]">Apex Terminal</h1>
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
+<input class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg pl-9 pr-4 py-1.5 text-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary-container/50 w-64 transition-all" placeholder="Search ticker or alert..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button aria-label="Wallet" class="text-slate-500 dark:text-[#c7c4d8] hover:text-indigo-300 transition-colors focus:outline-none focus:ring-1 focus:ring-indigo-500/30 rounded-full p-1">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</button>
+<button aria-label="Grid View" class="text-slate-500 dark:text-[#c7c4d8] hover:text-indigo-300 transition-colors focus:outline-none focus:ring-1 focus:ring-indigo-500/30 rounded-full p-1">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+</div>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="Trader Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a male trader in dramatic cinematic lighting against a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBczDVfCOqCMcfG386-LHAIquGv8TBWMNzwGRa71UX0uvHaaM3Bks0Rir6BsRRIp0iCH3llnfSl3cAsUyJC4RAq1yorfJQ2Maqvg9_KqmIriZdtt3GVlr9pmw_xYsm_DkR72pEOK8MBs-UFBDCjUuBrQkBLgVLDFil0-1d9uZALG8-FnlEjbvlf4wpVdAUugwhJ4wiWl4pKCXgNoBvJhL3HmCNBuUIM-5YSnIpTo_dCsEn3CmPMtr7jZvnh1bkxAJcyMlqx2_G8E78z"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="bg-slate-950 dark:bg-[#0b1326] h-screen w-64 fixed left-0 top-0 flex flex-col bg-slate-900/50 dark:bg-[#161d2f] border-r-0 shadow-[12px_0_32px_rgba(11,19,38,0.4)] z-50 hidden md:flex">
+<div class="flex flex-col h-full py-6">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="h-10 w-10 rounded-xl bg-gradient-to-br from-primary-container to-surface-container-highest flex items-center justify-center shadow-lg border border-white/10">
+<span class="material-symbols-outlined text-white">ssid_chart</span>
+</div>
+<div>
+<h2 class="text-xl font-black tracking-tighter text-indigo-400 dark:text-[#c3c0ff]">Obsidian</h2>
+<p class="text-[0.6875rem] text-on-surface-variant uppercase tracking-wider font-semibold">Precision Terminal</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-2 px-3">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 dark:text-[#c7c4d8] hover:bg-slate-800/40 dark:hover:bg-[#1c263d] transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors text-xl">monitoring</span>
+<span class="font-['Inter'] text-sm font-medium tracking-tight">Terminal</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 dark:text-[#c7c4d8] hover:bg-slate-800/40 dark:hover:bg-[#1c263d] transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors text-xl">show_chart</span>
+<span class="font-['Inter'] text-sm font-medium tracking-tight">Markets</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-indigo-300 dark:text-[#c3c0ff] font-bold border-r-2 border-indigo-500 bg-surface-container-high/50 group" href="#">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+<span class="font-['Inter'] text-sm font-bold tracking-tight">Price Alerts</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 dark:text-[#c7c4d8] hover:bg-slate-800/40 dark:hover:bg-[#1c263d] transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors text-xl">edit_note</span>
+<span class="font-['Inter'] text-sm font-medium tracking-tight">Strategy Notes</span>
+</a>
+</div>
+<div class="px-3 mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 dark:text-[#c7c4d8] hover:bg-slate-800/40 dark:hover:bg-[#1c263d] transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors text-xl">settings</span>
+<span class="font-['Inter'] text-sm font-medium tracking-tight">Settings</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="md:ml-64 md:pt-16 min-h-screen bg-surface-container-lowest p-6 md:p-8">
+<!-- Header -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-2xl md:text-3xl font-bold tracking-tight text-on-surface mb-1">Strategic Command</h2>
+<p class="text-sm text-on-surface-variant font-medium">Manage price alerts and algorithmic triggers.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-4 py-2 rounded-lg text-sm font-medium transition-colors ghost-border flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                    Filter
+                </button>
+<button class="gradient-bg text-white px-5 py-2 rounded-lg text-sm font-semibold transition-opacity hover:opacity-90 flex items-center gap-2 ambient-shadow">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    New Alert
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Create Alert -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- Create Alert Panel -->
+<div class="glass-panel rounded-xl p-6 flex flex-col">
+<div class="flex items-center gap-3 mb-6">
+<div class="h-8 w-8 rounded-full bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[18px]">add_alert</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface tracking-tight">Configure Trigger</h3>
+</div>
+<form class="flex flex-col gap-5">
+<div class="flex flex-col gap-1.5">
+<label class="text-[0.6875rem] font-semibold text-primary uppercase tracking-wider">Asset / Ticker</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">currency_exchange</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg pl-10 pr-4 py-2.5 text-sm font-medium text-on-surface focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all placeholder:text-outline" type="text" value="XAUUSD"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-[0.6875rem] font-semibold text-on-surface-variant uppercase tracking-wider">Price Level</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-4 py-2.5 text-sm font-medium text-on-surface focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all" placeholder="2050.00" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-[0.6875rem] font-semibold text-on-surface-variant uppercase tracking-wider">Condition</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-4 py-2.5 text-sm font-medium text-on-surface focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all appearance-none cursor-pointer">
+<option>Crossing Up</option>
+<option>Crossing Down</option>
+<option>Greater Than</option>
+<option>Less Than</option>
+</select>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-[0.6875rem] font-semibold text-on-surface-variant uppercase tracking-wider">Strategy Note</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-4 py-2.5 text-sm font-medium text-on-surface focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all resize-none" placeholder="e.g., 'Wait for 1H candle close before entering short.'" rows="3"></textarea>
+</div>
+<button class="mt-2 w-full bg-surface-container-high hover:bg-surface-container-highest border border-primary/30 text-primary py-3 rounded-lg text-sm font-bold transition-all flex items-center justify-center gap-2" type="button">
+                            Deploy Alert
+                            <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+</button>
+</form>
+</div>
+<!-- Market Summary Mini -->
+<div class="bg-surface-container-low rounded-xl p-5 border border-outline-variant/10">
+<h4 class="text-sm font-semibold text-on-surface-variant mb-4">Quick Sentiment</h4>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-sm font-medium text-on-surface">XAUUSD</span>
+</div>
+<span class="text-sm text-secondary font-semibold">+0.45%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-sm font-medium text-on-surface">EURUSD</span>
+</div>
+<span class="text-sm text-tertiary font-semibold">-0.12%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-sm font-medium text-on-surface">BTCUSD</span>
+</div>
+<span class="text-sm text-secondary font-semibold">+2.10%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Active Alerts & Notes -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Active Alerts Section -->
+<div>
+<h3 class="text-lg font-bold text-on-surface tracking-tight mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">radar</span>
+                        Active Sensors
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Alert Card 1 -->
+<div class="bg-surface-container hover:bg-surface-container-high transition-colors rounded-xl p-5 border border-outline-variant/10 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-tertiary"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-surface-container-highest flex items-center justify-center ghost-border">
+<span class="font-bold text-on-surface text-sm">BTC</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-base">BTC/USD</h4>
+<span class="text-[0.6875rem] font-medium text-secondary bg-secondary/10 px-2 py-0.5 rounded-full border border-secondary/20">Crossing Up</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">65,000.00</p>
+<p class="text-[0.6875rem] text-on-surface-variant">Target</p>
+</div>
+</div>
+<div class="mb-4">
+<div class="flex justify-between text-[0.6875rem] text-on-surface-variant mb-1.5">
+<span>Current: 64,120.50</span>
+<span>1.3% away</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest/50 rounded-lg p-3 border border-outline-variant/5">
+<p class="text-sm text-on-surface-variant italic font-medium">"Prepare to scale into long position if 4H volume confirms breakout."</p>
+</div>
+</div>
+<!-- Alert Card 2 -->
+<div class="bg-surface-container hover:bg-surface-container-high transition-colors rounded-xl p-5 border border-outline-variant/10 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-tertiary"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-surface-container-highest flex items-center justify-center ghost-border">
+<span class="font-bold text-on-surface text-sm">XAU</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-base">XAU/USD</h4>
+<span class="text-[0.6875rem] font-medium text-tertiary bg-tertiary/10 px-2 py-0.5 rounded-full border border-tertiary/20">Crossing Down</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">2,010.50</p>
+<p class="text-[0.6875rem] text-on-surface-variant">Target</p>
+</div>
+</div>
+<div class="mb-4">
+<div class="flex justify-between text-[0.6875rem] text-on-surface-variant mb-1.5">
+<span>Current: 2,018.90</span>
+<span>0.4% away</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest/50 rounded-lg p-3 border border-outline-variant/5">
+<p class="text-sm text-on-surface-variant italic font-medium">"Close 50% of long exposure; structural weakness forming."</p>
+</div>
+</div>
+<!-- Alert Card 3 -->
+<div class="bg-surface-container hover:bg-surface-container-high transition-colors rounded-xl p-5 border border-outline-variant/10 relative overflow-hidden group md:col-span-2">
+<div class="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-tertiary"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+<div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-surface-container-highest flex items-center justify-center ghost-border">
+<span class="font-bold text-on-surface text-sm">NQ</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-base">NQ100</h4>
+<span class="text-[0.6875rem] font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">Price Action</span>
+</div>
+</div>
+<div class="flex-1 px-0 md:px-8">
+<div class="flex justify-between text-[0.6875rem] text-on-surface-variant mb-1.5">
+<span>Current: 18,250.00</span>
+<span>Target: 18,500.00</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest/50 rounded-lg p-3 border border-outline-variant/5 md:max-w-xs">
+<p class="text-sm text-on-surface-variant italic font-medium">"Watch for rejection at macro resistance zone."</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Scheduled Notes Log -->
+<div class="mt-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-on-surface tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">history_edu</span>
+                            Strategic Journal
+                        </h3>
+<button class="text-sm text-primary hover:text-primary-container font-medium transition-colors">View All Archive</button>
+</div>
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/10 overflow-hidden">
+<!-- Note Item -->
+<div class="p-4 border-b border-outline-variant/10 hover:bg-surface-container transition-colors flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-outline text-[20px]">event_note</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-baseline mb-1">
+<h4 class="text-sm font-bold text-on-surface">FOMC Rate Decision Prep</h4>
+<span class="text-[0.6875rem] text-on-surface-variant">Oct 24, 14:00 EST</span>
+</div>
+<p class="text-sm text-on-surface-variant">Tighten stops on all USD pairs. Expecting high volatility spike; do not enter new positions 30m prior to release.</p>
+<div class="flex gap-2 mt-2">
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container text-[0.6875rem] font-medium">Macro</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface text-[0.6875rem] font-medium">USD</span>
+</div>
+</div>
+</div>
+<!-- Note Item -->
+<div class="p-4 border-b border-outline-variant/10 hover:bg-surface-container transition-colors flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-baseline mb-1">
+<h4 class="text-sm font-bold text-on-surface line-through text-outline">EURUSD Support Touch</h4>
+<span class="text-[0.6875rem] text-on-surface-variant">Oct 22, 09:15 EST</span>
+</div>
+<p class="text-sm text-outline">Executed long at 1.0850 per strategy. Moved stop to breakeven after 20 pip run.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
